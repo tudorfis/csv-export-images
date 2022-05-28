@@ -6,6 +6,7 @@ import {
   Image,
   Stack,
   Link,
+  Button,
   Heading,
 } from "@shopify/polaris";
 
@@ -64,13 +65,11 @@ export function HomePage() {
                 </TextContainer>
               </Stack.Item>
               <Stack.Item>
-                <div style={{ padding: "0 20px" }}>
-                  <Image
-                    source={trophyImgUrl}
-                    alt="Nice work on building a Shopify app"
-                    width={120}
-                  />
-                </div>
+                <Image
+                  source={trophyImgUrl}
+                  alt="Nice work on building a Shopify app"
+                  width={120}
+                />
               </Stack.Item>
             </Stack>
           </Card>
