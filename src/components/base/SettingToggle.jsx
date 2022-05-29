@@ -17,7 +17,7 @@ export default function SettingToggleExample() {
             }}
             enabled={active}
         >
-            This setting is <TextStyle variation="strong">{textStatus}</TextStyle>.
+            Export of product images is <TextStyle variation="strong">{textStatus}</TextStyle>.
         </SettingToggle>
     );
 }
