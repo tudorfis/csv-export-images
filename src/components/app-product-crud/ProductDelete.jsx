@@ -17,9 +17,9 @@ const DELETE_PRODUCT = gql`
 
 export function ProductDelete({ productId, reloadProducts }) {
     const [startedDelete, setStartedDelete] = useState(false);
-    const [mutateFunction, { data, loading }] = useMutation(DELETE_PRODUCT);
+    const [mutateFunction] = useMutation(DELETE_PRODUCT);
 
-    if (loading || startedDelete) return (
+    if (startedDelete) return (
         <Spinner size="small" />
     )
 
