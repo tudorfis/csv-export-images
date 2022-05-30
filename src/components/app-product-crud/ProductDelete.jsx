@@ -1,6 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { Button, Spinner } from "@shopify/polaris";
 import { DeleteMinor } from '@shopify/polaris-icons';
+import { useState } from "react";
 
 const DELETE_PRODUCT = gql`
     mutation productDelete($input: ProductDeleteInput!) {
@@ -15,10 +16,16 @@ const DELETE_PRODUCT = gql`
 `
 
 export function ProductDelete({ productId, reloadProducts }) {
+    const [startedDelete, setStartedDelete] = useState(false);
     const [mutateFunction, { data, loading }] = useMutation(DELETE_PRODUCT);
-    if (loading) return <Spinner size="small" />;
+
+    if (loading || startedDelete) return (
+        <Spinner size="small" />
+    )
 
     const handleDeleteProduct = async () => {
+        setStartedDelete(true)
+
         await mutateFunction({
             variables: {
                 input: {
