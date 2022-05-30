@@ -1,12 +1,19 @@
 import { Stack, TextStyle } from "@shopify/polaris";
+import { ProductDelete } from "./ProductDelete";
 
-export function ProductList({ products }) {
+export function ProductList({ products, reloadProducts }) {
     return <>
         <Stack vertical>
             {products.edges.map(({ node: product }) => (
                 <p key={product.id}>
-                    <TextStyle variation="code">Product</TextStyle> 👉
-                    <TextStyle variation="strong"> {product.title}</TextStyle>
+                    <Stack>
+                        <TextStyle variation="code">Product</TextStyle> 👉
+                        <TextStyle variation="strong"> {product.title}</TextStyle>
+                        <ProductDelete
+                            reloadProducts={reloadProducts}
+                            productId={product.id}
+                        />
+                    </Stack>
                 </p>
             ))}
         </Stack>

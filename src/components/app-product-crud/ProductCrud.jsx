@@ -20,9 +20,9 @@ const GET_PRODUCTS = gql`{
 }`
 
 export function ProductCrud() {
-    console.clear()
+    // console.clear()
 
-    const { loading, data } = useQuery(GET_PRODUCTS)
+    const { loading, data, refetch } = useQuery(GET_PRODUCTS)
 
     if (loading) return (
         <Spinner size="large" />
@@ -33,6 +33,7 @@ export function ProductCrud() {
     return (
         <Page fullWidth>
             <ProductList
+                reloadProducts={refetch}
                 products={data.products}
             />
         </Page>
