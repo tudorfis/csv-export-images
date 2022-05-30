@@ -27,7 +27,11 @@ const ProductDelete = ({ client, productId }) => {
             onClick={async () => {
                 try {
                     setStartedDelete(true);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 9e887fd8ecde9933198777507901198f57eaec67
                     await mutateFunction({
                         variables: {
                             input: {
@@ -35,11 +39,19 @@ const ProductDelete = ({ client, productId }) => {
                             }
                         },
                     })
+<<<<<<< HEAD
 
                     // This will trigger refetch on all the queries in this page.
                     await client.resetStore();
                 }
                 catch (err) {
+=======
+        
+                    // This will trigger refetch on all the queries in this page.
+                    await client.resetStore();
+                }
+                catch(err){
+>>>>>>> 9e887fd8ecde9933198777507901198f57eaec67
                     console.error(err);
                     setStartedDelete(false);
                 }
@@ -52,3 +64,44 @@ const ProductDelete = ({ client, productId }) => {
 }
 
 export default withApollo(ProductDelete);
+<<<<<<< HEAD
+=======
+
+
+/**
+ * OLD
+ */
+// export function ProductDelete({ productId, reloadProducts }) {
+//     const [startedDelete, setStartedDelete] = useState(false);
+//     const [mutateFunction] = useMutation(DELETE_PRODUCT);
+
+//     if (startedDelete) return (
+//         <Spinner size="small" />
+//     )
+
+//     const handleDeleteProduct = async () => {
+//         setStartedDelete(true)
+
+//         await mutateFunction({
+//             variables: {
+//                 input: {
+//                     id: productId
+//                 }
+//             },
+//         })
+
+//         reloadProducts()
+//     }
+
+//     return (
+//         <Button
+//             size="slim"
+//             destructive
+//             icon={DeleteMinor}
+//             onClick={handleDeleteProduct}
+//         >
+//             Delete
+//         </Button>
+//     )
+// }
+>>>>>>> 9e887fd8ecde9933198777507901198f57eaec67
