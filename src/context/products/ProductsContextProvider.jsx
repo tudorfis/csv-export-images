@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery, useLazyQuery } from '@apollo/client';
 import { withApollo } from '@apollo/client/react/hoc';
 import { LoadingOverlay } from '/src/components/base/LoadingOverlay';
 import ProductsContext, { initialState } from '/src/context/products/ProductsContext';
@@ -36,7 +36,7 @@ const PRODUCT_DELETE_MUTATION = gql`
 const ProductsContextProvider = ({ children, client }) => {
     const [state, setState] = useState(initialState);
 
-    const { loading } = useQuery(PRODUCTS_QUERY, {
+    const initialProductsQueryResults = useQuery(PRODUCTS_QUERY, {
         onCompleted: async ({ products }) => {
             setState(prevState => ({
                 ...prevState,
@@ -45,31 +45,41 @@ const ProductsContextProvider = ({ children, client }) => {
         }
     });
 
-    const [deleteProduct] = useMutation(PRODUCT_DELETE_MUTATION);
+    const [productsQuery, productsQueryResults] = useLazyQuery(PRODUCTS_QUERY, {
+        onCompleted: async ({ products }) => {
+            setState(prevState => ({
+                ...prevState,
+                products,
+            }));
+        }
+    })
+
+    const [productDeleteMutation] = useMutation(PRODUCT_DELETE_MUTATION);
+
+    const isLoading = (
+        initialProductsQueryResults.loading ||
+        productsQueryResults.loading
+    )
 
     return (
         <ProductsContext.Provider value={{
             actions: {
-                removeById: async (productId) => {
-                    try {
-                        await deleteProduct({
-                            variables: {
-                                input: {
-                                    id: productId
-                                }
-                            },
-                        });
-
-                        await client.resetStore();
-                    }
-                    catch (err) {
-                        console.error(err);
-                    }
+                refetchProducts: async () => {
+                    await productsQuery()
+                },
+                deleteProduct: async (productId) => {
+                    await productDeleteMutation({
+                        variables: {
+                            input: {
+                                id: productId
+                            }
+                        },
+                    });
                 }
             },
             state,
         }}>
-            {loading ? <LoadingOverlay /> : children}
+            {isLoading ? <LoadingOverlay /> : children}
         </ProductsContext.Provider>
     )
 

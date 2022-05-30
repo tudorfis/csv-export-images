@@ -8,13 +8,10 @@ const ProductDelete = ({ productId }) => {
     const [deleting, setDeleting] = useState(false);
 
     const handleProductDelete = async () => {
-        try {
-            setDeleting(true);
-            await actions.removeById(productId);
-            setDeleting(false);
-        } catch (err) {
-            setDeleting(false);
-        }
+        setDeleting(true);
+        await actions.deleteProduct(productId);
+        await actions.refetchProducts();
+        setDeleting(false);
     }
 
     return (
