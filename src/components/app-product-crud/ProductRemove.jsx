@@ -12,7 +12,7 @@ const DELETE_PRODUCT = gql`
     }
 `
 
-const ProductDelete = ({ client, productId }) => {
+const ProductRemove = ({ client, productId }) => {
     const [startedDelete, setStartedDelete] = useState(false);
     const [mutateFunction] = useMutation(DELETE_PRODUCT);
 
@@ -50,4 +50,4 @@ const ProductDelete = ({ client, productId }) => {
     )
 }
 
-export default withApollo(ProductDelete);
+export default withApollo(ProductRemove);

@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client'
 import { Page, Spinner } from '@shopify/polaris'
-import { ProductList } from './ProductList'
+import { ProductMap } from './ProductMap'
 
 const GET_PRODUCTS = gql`{
     products(first: 10) {
@@ -30,30 +30,9 @@ export function ProductCrud() {
 
     return (
         <Page fullWidth>
-            <ProductList
+            <ProductMap
                 products={data.products}
             />
         </Page>
     )
 }
-/**
- * OLD
- */
-// export function ProductCrud() {
-//     const { loading, data, refetch } = useQuery(GET_PRODUCTS)
-
-//     if (loading) return (
-//         <Page fullWidth>
-//             <Spinner size="large" />
-//         </Page>
-//     )
-
-//     return (
-//         <Page fullWidth>
-//             <ProductList
-//                 reloadProducts={refetch}
-//                 products={data.products}
-//             />
-//         </Page>
-//     )
-// }

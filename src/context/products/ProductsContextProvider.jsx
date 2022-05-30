@@ -1,18 +1,21 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { withApollo } from '@apollo/client/react/hoc';
-
-import ProductsContext, { initialState } from '.';
-import LoadingOverlay from '../../components/LoadingOverlay';
+import { LoadingOverlay } from '/src/components/base/LoadingOverlay';
+import ProductsContext, { initialState } from '/src/context/products/ProductsContext';
 
 const PRODUCTS_QUERY = gql`{
-    products(first: 10) {
+    products(
+        first: 10, 
+        sortKey:CREATED_AT, 
+        reverse: true
+    ) {
         edges {
-            cursor
             node {
                 id
                 title
                 description
+                onlineStorePreviewUrl
             }
         }
         pageInfo {
@@ -30,8 +33,8 @@ const PRODUCT_DELETE_MUTATION = gql`
     }
 `;
 
-const Provider = ({ children, client }) => {
-    const [state, setState] = React.useState(initialState);
+const ProductsContextProvider = ({ children, client }) => {
+    const [state, setState] = useState(initialState);
 
     const { loading } = useQuery(PRODUCTS_QUERY, {
         onCompleted: async ({ products }) => {
@@ -43,7 +46,6 @@ const Provider = ({ children, client }) => {
     });
 
     const [deleteProduct] = useMutation(PRODUCT_DELETE_MUTATION);
-
 
     return (
         <ProductsContext.Provider value={{
@@ -73,4 +75,4 @@ const Provider = ({ children, client }) => {
 
 }
 
-export default withApollo(Provider);
+export default withApollo(ProductsContextProvider);

@@ -1,12 +1,14 @@
-import { Page } from '@shopify/polaris'
-import ProductsContextProvider from '/src/context/ProductsContext/provider';
-import ProductList from './ProductList';
+import { Card, Page } from '@shopify/polaris'
+import ProductsContextProvider from '/src/context/products/ProductsContextProvider';
+import ProductDataTable from './ProductDataTable';
 
 export default () => {
     return (
         <ProductsContextProvider>
-            <Page fullWidth>
-                <ProductList />
+            <Page title="Products for deletion">
+                <Card>
+                    <ProductDataTable />
+                </Card>
             </Page>
         </ProductsContextProvider>
     );
