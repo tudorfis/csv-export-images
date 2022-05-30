@@ -1,10 +1,8 @@
-import * as React from 'react';
 import { Page } from '@shopify/polaris'
-
-import ProductsContextProvider from '../../context/ProductsContext/provider';
+import ProductsContextProvider from '/src/context/ProductsContext/provider';
 import ProductList from './ProductList';
 
-const ProductPage = () => {
+export default () => {
     return (
         <ProductsContextProvider>
             <Page fullWidth>
@@ -13,5 +11,3 @@ const ProductPage = () => {
         </ProductsContextProvider>
     );
 }
-
-export default ProductPage
