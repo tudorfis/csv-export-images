@@ -20,7 +20,7 @@ const GET_PRODUCTS = gql`{
 }`
 
 export function ProductCrud() {
-    const { loading, data, refetch } = useQuery(GET_PRODUCTS)
+    const { loading, data } = useQuery(GET_PRODUCTS)
 
     if (loading) return (
         <Page fullWidth>
@@ -31,9 +31,29 @@ export function ProductCrud() {
     return (
         <Page fullWidth>
             <ProductList
-                reloadProducts={refetch}
                 products={data.products}
             />
         </Page>
     )
 }
+/**
+ * OLD
+ */
+// export function ProductCrud() {
+//     const { loading, data, refetch } = useQuery(GET_PRODUCTS)
+
+//     if (loading) return (
+//         <Page fullWidth>
+//             <Spinner size="large" />
+//         </Page>
+//     )
+
+//     return (
+//         <Page fullWidth>
+//             <ProductList
+//                 reloadProducts={refetch}
+//                 products={data.products}
+//             />
+//         </Page>
+//     )
+// }

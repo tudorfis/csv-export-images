@@ -15,7 +15,7 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import "./styles.css"
 
-import { ProductCrud } from "./components/app-product-crud/ProductCrud";
+import ProductPage from "./components/app-product-idea/ProductPage";
 
 export default function App() {
   return (
@@ -28,7 +28,7 @@ export default function App() {
         }}
       >
         <MyProvider>
-          <ProductCrud />
+          <ProductPage />
         </MyProvider>
       </AppBridgeProvider>
     </PolarisProvider>

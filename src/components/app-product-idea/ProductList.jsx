@@ -1,11 +1,18 @@
+import * as React from 'react';
 import { Stack, TextStyle } from "@shopify/polaris";
-import ProductDelete from "./ProductDelete";
 
+import ProductsContext from '../../context/ProductsContext';
 
-export function ProductList({ products }) {
-    return <>
+import ProductDelete from './ProductDelete';
+
+const ProductList = () => {
+    const { state } = React.useContext(ProductsContext);
+
+    if (!state?.products?.edges) return (<hr />)
+
+    return (
         <Stack vertical>
-            {products.edges.map(({ node: product }) => (
+            {state.products?.edges.map(({ node: product }) => (
                 <Stack.Item key={product.id}>
                     <Stack>
                         <TextStyle variation="code">Product 👉 </TextStyle>
@@ -15,5 +22,7 @@ export function ProductList({ products }) {
                 </Stack.Item>
             ))}
         </Stack>
-    </>
+    );
 }
+
+export default ProductList;
