@@ -15,7 +15,7 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import "./styles.css"
 
-import { ExportImages } from "./components/app-export-images/ExportImages";
+import { ProductCrud } from "./components/app-product-crud/ProductCrud";
 
 export default function App() {
   return (
@@ -28,7 +28,7 @@ export default function App() {
         }}
       >
         <MyProvider>
-          <ExportImages />
+          <ProductCrud />
         </MyProvider>
       </AppBridgeProvider>
     </PolarisProvider>
@@ -46,6 +46,7 @@ function MyProvider({ children }) {
     }),
   });
 
+  console.clear()
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }
 
