@@ -1,4 +1,4 @@
-
+import React from "react";
 import { Card, EmptyState, Page, Spinner } from '@shopify/polaris'
 
 export default function LoadingOverlay({ title = '' }) {

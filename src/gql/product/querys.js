@@ -12,7 +12,7 @@ export const PRODUCTS_QUERY = gql`
             last: $last,
             after: $after,
             before: $before,
-            sortKey:CREATED_AT, 
+            sortKey: CREATED_AT, 
             reverse: true
         ) {
             edges {
