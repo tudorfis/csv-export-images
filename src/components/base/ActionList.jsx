@@ -11,8 +11,6 @@ export default function () {
     }, []);
 
     const handleSaveProducts = useCallback(() => {
-        console.log('Save products')
-
         setIsLoading(true)
         setTimeout(() => setIsLoading(false), 1500)
     }, []);
@@ -22,8 +20,6 @@ export default function () {
     }, [isLoading])
 
     const handleExitPage = useCallback(() => {
-        console.log('handleExitPage')
-
         setIsLoading(true)
         setTimeout(() => setIsLoading(false), 1500)
     }, []);

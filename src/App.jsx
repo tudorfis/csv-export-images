@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   ApolloClient,
   ApolloProvider,
@@ -15,7 +16,6 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import "./styles.css"
 import Products from "./components/app-product-idea/Products";
-
 export default function App() {
   return (
     <PolarisProvider i18n={translations}>

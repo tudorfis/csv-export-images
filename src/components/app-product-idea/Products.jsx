@@ -43,17 +43,11 @@ export default function Products() {
             products,
         },
         actions: {
-            deleteProduct: async (productId) => {
-                await mutationDeleteProduct({
-                    variables: {
-                        input: {
-                            id: productId
-                        }
-                    },
-                });
+            deleteProduct: async (id) => {
+                const payload = { variables: { input: { id } } }
+                await mutationDeleteProduct(payload);
 
                 setIsLoading(true)
-
                 await fetchProductCount()
                 const { data: { products } } = await queryProducts();
 
