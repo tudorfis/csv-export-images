@@ -1,4 +1,4 @@
-
+import React from 'react'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { Card, Page } from '@shopify/polaris'
 import { createContext, useEffect, useState } from 'react'
@@ -9,7 +9,7 @@ import ProductDataTable from './ProductDataTable'
 import { userLoggedInFetch } from '../../App'
 import { useAppBridge } from '@shopify/app-bridge-react'
 
-export const ProductContext = createContext({})
+export const ProductContext = createContext({ state: {}, actions: {} })
 
 export default function Products() {
     const app = useAppBridge();
@@ -63,7 +63,7 @@ export default function Products() {
         }
     }
 
-    return <>
+    return (
         <ProductContext.Provider value={providerValue}>
             <Page title={'Products (' + productCount + ')'}>
                 {isLoading ? <LoadingOverlay title="Loading products..." /> :
@@ -73,5 +73,5 @@ export default function Products() {
                 }
             </Page>
         </ProductContext.Provider>
-    </>
+    )
 }

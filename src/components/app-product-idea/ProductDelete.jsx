@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react';
+import React from 'react';
 import { Button, Spinner } from "@shopify/polaris";
 import { DeleteMinor } from '@shopify/polaris-icons';
 import { ProductContext } from './Products';
 
 const ProductDelete = ({ productId }) => {
-    const { actions } = useContext(ProductContext);
-    const [isDeleting, setIsDeleting] = useState(false);
+    const { actions } = React.useContext(ProductContext);
+    const [isDeleting, setIsDeleting] = React.useState(false);
 
     const handleProductDelete = () => {
         setIsDeleting(true);
