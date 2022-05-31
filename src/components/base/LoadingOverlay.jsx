@@ -1,10 +1,16 @@
 
-import { Page, Spinner } from '@shopify/polaris'
+import { Card, EmptyState, Page, Spinner } from '@shopify/polaris'
 
-export function LoadingOverlay() {
+export default function LoadingOverlay({ title = '' }) {
     return (
         <Page fullWidth>
-            <Spinner size="large" />
+            <Card sectioned>
+                <EmptyState
+                    heading={title}
+                >
+                    <Spinner size="large" />
+                </EmptyState>
+            </Card>
         </Page>
     )
 }

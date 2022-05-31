@@ -1,28 +1,26 @@
 import { useContext, useState } from 'react';
-import { Button } from "@shopify/polaris";
+import { Button, Spinner } from "@shopify/polaris";
 import { DeleteMinor } from '@shopify/polaris-icons';
-import ProductsContext from '/src/context/products/ProductsContext';
+import { ProductContext } from './Products';
 
 const ProductDelete = ({ productId }) => {
-    const { actions } = useContext(ProductsContext);
-    const [deleting, setDeleting] = useState(false);
+    const { actions } = useContext(ProductContext);
+    const [isDeleting, setIsDeleting] = useState(false);
 
-    const handleProductDelete = async () => {
-        setDeleting(true);
-        await actions.deleteProduct(productId);
-        await actions.refetchProducts();
-        setDeleting(false);
+    const handleProductDelete = () => {
+        setIsDeleting(true);
+        actions.deleteProduct(productId);
     }
 
     return (
         <Button
             size="slim"
             destructive
-            disabled={deleting}
-            icon={DeleteMinor}
+            disabled={isDeleting}
+            icon={isDeleting ? <Spinner size="small" /> : DeleteMinor}
             onClick={handleProductDelete}
         >
-            {deleting ? 'Deleting...' : 'Delete'}
+            {isDeleting ? 'Deleting...' : 'Delete'}
         </Button>
     )
 }

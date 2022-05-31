@@ -1,12 +1,11 @@
 import { useContext } from 'react';
-import { DataTable, Link, Spinner, TextStyle } from '@shopify/polaris';
-import ProductsContext from '/src/context/products/ProductsContext';
+import { DataTable, Link, TextStyle } from '@shopify/polaris';
 import ProductDelete from './ProductDelete';
+import { ProductContext } from './Products';
 
 export default function ProductDataTable() {
-    const { state } = useContext(ProductsContext);
-
-    if (!state?.products?.edges) return <Spinner />
+    const { state } = useContext(ProductContext);
+    if (!state?.products) return null
 
     return (
         <DataTable
