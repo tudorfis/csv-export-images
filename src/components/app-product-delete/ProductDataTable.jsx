@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import React from 'react';
 import { DataTable, Link, TextStyle } from '@shopify/polaris';
 import ProductDelete from './ProductDelete';
 import { ProductContext } from './Products';
 
 export default function ProductDataTable() {
-    const { state } = useContext(ProductContext);
+    const { state } = React.useContext(ProductContext);
     if (!state?.products) return null
 
     return (
